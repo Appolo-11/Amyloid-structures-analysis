@@ -102,7 +102,7 @@ The quintessence of that work is a program, predicted the probable co-aggregatio
   The `.pickle` and `.csv` files took new columns, are presented below:
   
   					
-  | CompArch_sars_seq | CompArch_sars_start | HumanID  | CompArch_human_seq | CompArch_human_start | CompScore | OtherScores |
+| CompArch_sars_seq | CompArch_sars_start | HumanID  | CompArch_human_seq | CompArch_human_start | CompScore | OtherScores |
 | ------------- | ------------- | ------------- | ------------- |------------- | ------------- | ------------- |
 | NNYRLGG | 2 | [QN25W9, P034FT, ... ]  | [NNYR, LGG, ...] | [2, 5, ...]  | [0.55, 0.77, ... ]  | [other scores] |
   
