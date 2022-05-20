@@ -99,6 +99,27 @@ The quintessence of that work is a program, predicted the probable co-aggregatio
 - <ProteinID>_compscore.csv - format that is convenient to open in many tools and comfortable to look and analyze analyze by the gaze :)
 - human_proteins_<ProteinID>.txt - list of human proteins, potentially possible to co-aggregate with SARs-CoV-2 protein
 
+  The `.pickle` and `.csv` files took new columns, are presented below:
+  
+  					
+  | CompArch_sars_seq | CompArch_sars_start | HumanID  | CompArch_human_seq | CompArch_human_start | CompScore | OtherScores |
+| ------------- | ------------- | ------------- | ------------- |------------- | ------------- | ------------- |
+| NNYRLGG | 2 | [QN25W9, P034FT, ... ]  | [NNYR, LGG, ...] | [2, 5, ...]  | [0.55, 0.77, ... ]  | [other scores] |
+  
+  where:
+  - CompArch_sars_seq --  SARS β-arch sequence taking active part in co-aggregation 
+
+  - CompArch_sars_start -- CompArch_sars_seq start coordinate relatively ot the initial SARS β-arch
+
+  - HumanID -- list of the human UniProtID's
+
+  - CompArch_human_seq -- β-arch sequence taking active part in co-aggregation
+
+  - CompArch_human_start -- CompArch_sars_seq start coordinate relatively ot the initial human β-arch
+
+  - CompScore -- CompScore from CompArches
+
+  - OtherScores --- other scores from CompArches
   
 ### Found known pathogenic amyloids 
   
