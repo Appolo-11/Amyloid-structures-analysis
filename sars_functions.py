@@ -301,3 +301,20 @@ def find_amyloid_connection(sars_df_filt, iupred_df_filt, compatible_arches, res
 	    with open(res_path + sars_protein +'_compscore.pickle', 'wb') as f:
 	        # Pickle the 'data' dictionary using the highest protocol available.
 	        pickle.dump(sars_res_df, f, pickle.HIGHEST_PROTOCOL)
+
+
+def detect_pathogenic_amyloids(path_to_proteins_txts, amyloidase_base, additional_base):
+
+    all_files = glob.glob(path_to_proteins_txts + "/*.txt")
+    with open('amyloidase_res.txt', 'w') as amyl:
+      for filename in all_files:
+          sars_prot = filename[-10:-3]
+          with open(filename) as f:
+            for line in f:
+              # print(line, sars_prot)
+              if line[:-1] in amyloidase_base:
+                amyl.write(f'{line[:-1]} is a {amyloidase_base[line[:-1]]} (main) and could be bound with {sars_prot} \n')
+              if line[:-1] in additional_base:
+                amyl.write(f'{line[:-1]} is a {additional_base[line[:-1]]} (additional) and could be bound with {sars_prot} \n')
+
+

@@ -48,4 +48,5 @@ iupred_df = human_df[human_df.IUpred == 1]
 iupred_df_filt = iupred_df[iupred_df['Score_total'] >= 0.55]
 sars_df_filt = sars_df[sars_df["Score_total"] > 0.55]
 
-find_amyloid_connection(sars_df_filt, iupred_df_filt, compatible_arches, res_path)
+sars_functions.find_amyloid_connection(sars_df_filt, iupred_df_filt, compatible_arches, res_path)
+sars_functions.detect_pathogenic_amyloids(res_path,amyloidase_base,additional_base)
