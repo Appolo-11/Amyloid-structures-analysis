@@ -1,5 +1,6 @@
 # Amyloid-structures-analysis
-The set of programms for revealing possible SARS-CoV-2 proteins able to co-aggregate with human proteins.
+The set of programms for revealing possible SARS-CoV-2 proteins able to co-aggregate with human proteins. 
+In this project was used unpublished program AmyloComp. It allows to estimate probability of co-aggregation two proteins/β-arches.
 _Remark:_ all amyloids of our interests are pathogenic amyloids. But we would name them just as amyloid.
 
 ## Aims and goals of project
@@ -79,7 +80,7 @@ where:
 
 Function `concat_human_csv(path_to_csvs)` take path to the directory as an input and concat all .csv to the big one - we would name it `human_df`.
 
-Then we need to embed that with the IUPred data (data taken from the [web-service](https://iupred2a.elte.hu/)) - that soft predict which regions of protein are structured/unstructured.
+Then we need to embed that with the IUPred data (data taken from the [web-service](https://iupred2a.elte.hu/)) - that soft predict which regions of protein are structured/unstructured (IUPred threshold for site to be considered as structured = 0.3).
 If your data as big as ours, you get from IUPred several big files. To concat them to the huge one, use `concat_iupred_res(path_to_iupred_results, path_to_out_file)` function.
 Then we should transform it and integrate it to the `human_df`: this could be done with assistance of `read_web_iupred(path_to_cincat_iupred_results)` (returns full_proteome_dict) and `make_iupred_df(human_df, full_proteome_dict)`. Dataframe with IUPred results integrated would be named as `iupred_df`.
 
