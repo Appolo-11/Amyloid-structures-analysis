@@ -50,6 +50,17 @@ Publication Date:December 3, 2021 https://doi.org/10.1021/acschemneuro.1c00666
 _Remark 1:_ Unless otherwise specified, all functions are placed in sars_functions.py
 _Remark 2_: Everything from `matrices` and `functions` directories are private data, since that we placed just "construction' and need organization, but the real program code or numerical values are removed or replaced with random data.
 
+**Tools versions:**
+|Tool| Version|
+|----|----|
+|cloudpickle        |           1.3.0 |                        
+|glob2              |          0.7    |                      
+|joblib             |          1.1.0  |     
+|numpy              |          1.21.6 |
+|pandas             |          1.3.5  |
+|pickleshare        |          0.7.5  |       
+|tqdm               |          4.64.0  |
+
 ## 1. Input data
 ### Human data
 Human data assumed to be a set of .csv files with the structure described below:
@@ -84,12 +95,12 @@ Then we should transform it and integrate it to the `human_df`: this could be do
  
 ### Filter our data
 
-We remember, that we have the scores-analogues of β-arch existence probability. We would like to use that and take the only data with probability higher than som bound. We use `Score_total > 0.55` bound and also we consider the only human β-arches, who placed in the unstructured region (since that fact increase the real probability to constrain β-arches structure). 
+We remember, that we have the scores-analogues of β-arch existence probability. We would like to use that and take the only data with probability higher than som bound. We use `Score_total > 0.575` bound (that bound is recommended by the ArchCandy authors) and also we consider the only human β-arches, who placed in the unstructured region (since that fact increase the real probability to constrain β-arches structure). 
 That is done by the next three command:
 ```
 iupred_df = human_df[human_df.IUpred == 1]
-iupred_df_filt = iupred_df[iupred_df['Score_total'] > 0.55]
-sars_df_filt = sars_df[sars_df["Score_total"] > 0.55]
+iupred_df_filt = iupred_df[iupred_df['Score_total'] > 0.575]
+sars_df_filt = sars_df[sars_df["Score_total"] > 0.575]
 ```
 
 ## 3. Searching for possible co-aggregations
