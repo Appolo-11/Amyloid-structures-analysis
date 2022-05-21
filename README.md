@@ -61,10 +61,10 @@ Human data assumed to be a set of .csv files with the structure described below:
 where:
 - `ID` -- Protein UniProtID 
 - `Sequence` -- β-arch sequence
-- `Start` -- coordinate of $\beta$-arch start in the protein
-- `Arch` -- $\beta$-arch type
+- `Start` -- coordinate of β-arch start in the protein
+- `Arch` -- β-arch type
 - `Score_Bstrand_length` - β-arch length score
--  `Score_total` - score of β-arch from ArchCandy (probability of $\beta$-arch existence)
+-  `Score_total` - score of β-arch from ArchCandy (probability of β-arch existence)
 
 Function `concat_human_csv(path_to_csvs)` take path to the directory as an input and concat all .csv to the big one - we would name it `human_df`.
 
