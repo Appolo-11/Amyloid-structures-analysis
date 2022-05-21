@@ -44,6 +44,8 @@ def concat_human_csv(path):
     return clean_df
 
 def read_sars_csv(sars_path):
+""" These functions read .csv files defined with path
+"""
 	sars_df = pd.read_csv(sars_path, index_col=None, header=0, quotechar="'")
 	sars_df['ID'] = list(map(lambda x: x.split('|')[1], sars_df['ID']))
 	if sars_df.isnull().values.any():
@@ -180,19 +182,25 @@ def read_web_iupred(filepath):
     return proteome_dict
 
 
- def concat_iupred_res(path, path_to_out_file):
+def concat_iupred_res(path, path_to_out_file):
+""" These functions concat files from IUPred and made one file from them
+"""
 	all_files = glob.glob(path + "/*.result")
 
 	# sort file names from _0 to _20000
 	all_files.sort(key=lambda x: int(x.split('/')[-1].split('.')[0][5:]))
 	with open(path_to_out_file, 'w') as outfile:
-    for fname in all_files:
-        with open(fname) as infile:
-            for line in infile:
-                outfile.write(line)
+	    for fname in all_files:
+		with open(fname) as infile:
+		    for line in infile:
+			outfile.write(line)
+	outfile.write('# IUPred')
 
 
 def make_iupred_df(human_df, full_proteome_dict):
+""" These functions add information about structured/unstructured region belonging 
+to the human_df according to the full_proteome_dict data, contained IUPred scores for each protein in human_df
+"""
 	df_proteins_list = []
 	for protein in tqdm(full_proteome_dict.keys()):
 	      df_protein = clean_df[clean_df.ID==protein]
