@@ -50,7 +50,7 @@ Publication Date:December 3, 2021 https://doi.org/10.1021/acschemneuro.1c00666
 _Remark 1:_ Unless otherwise specified, all functions are placed in sars_functions.py
 _Remark 2_: Everything from `matrices` and `functions` directories are private data, since that we placed just "construction' and need organization, but the real program code or numerical values are removed or replaced with random data.
 
-**Tools versions:**
+**Used tools:**
 |Tool| Version|
 |----|----|
 |cloudpickle        |           1.3.0 |                        
