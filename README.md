@@ -108,19 +108,19 @@ The quintessence of that work is a program, predicted the probable co-aggregatio
 | NNYRLGG | 2 | [QN25W9, P034FT, ... ]  | [NNYR, LGG, ...] | [2, 5, ...]  | [0.55, 0.77, ... ]  | [other scores] |
   
   where:
-  - CompArch_sars_seq --  SARS β-arch sequence taking active part in co-aggregation 
+  - `CompArch_sars_seq` --  SARS β-arch sequence taking active part in co-aggregation 
 
-  - CompArch_sars_start -- CompArch_sars_seq start coordinate relatively ot the initial SARS β-arch
+  - `CompArch_sars_start` -- CompArch_sars_seq start coordinate relatively ot the initial SARS β-arch
 
-  - HumanID -- list of the human UniProtID's
+  - `HumanID` -- list of the human UniProtID's
 
-  - CompArch_human_seq -- list of β-arch sequences taking active part in co-aggregation
+  - `CompArch_human_seq` -- list of β-arch sequences taking active part in co-aggregation
 
-  - CompArch_human_start -- list of CompArch_sars_seq start coordinates relatively ot the initial human β-arch
+  - `CompArch_human_start` -- list of CompArch_sars_seq start coordinates relatively ot the initial human β-arch
 
-  - CompScore -- list of CompScores from CompArches
+  - `CompScore` -- list of CompScores from CompArches
 
-  - OtherScores --- list of other scores from CompArches
+  - `OtherScores` --- list of other scores from CompArches
   
 ### Found known pathogenic amyloids 
   
