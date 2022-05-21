@@ -57,6 +57,7 @@ Human data assumed to be a set of .csv files with the structure described below:
 | ID  | Sequence | Arch  | Start | Score_Bstrand_length | Score_total | 
 | ------------- | ------------- | ------------- | ------------- |------------- | ------------- |
 | Q969G3  | NNYRLGG  | PPL  | 31 | 0.999  | 0.644  |
+
 where:
 - `ID` -- Protein UniProtID 
 - `Sequence` -- β-arch sequence
