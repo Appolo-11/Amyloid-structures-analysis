@@ -76,7 +76,7 @@ Then we should transform it and integrate it to the `human_df`: this could be do
  SARS-CoV-2 data assumed to be stored in one table, so we need no concatenation (if you do just use `concat_human_df` with columns you need). 
  The format of data should be same as initial human data. To read it use `read_sars_csv(path_to_sars_csv)`. The result database would be named as `sars_df`.
  
- ## 2. Other preparations
+ ## 2. Data preparations
  
 ### Get compatible arches
  We need to create database where place compatible arches type. We do that based on the table of experimental compatibility scores. To do that and get the dictionary of compatible arches `compatible_arches` just run `eval_compatible_arches(path_to_Score_arc_5)`.
@@ -113,13 +113,13 @@ The quintessence of that work is a program, predicted the probable co-aggregatio
 
   - HumanID -- list of the human UniProtID's
 
-  - CompArch_human_seq -- β-arch sequence taking active part in co-aggregation
+  - CompArch_human_seq -- list of β-arch sequences taking active part in co-aggregation
 
-  - CompArch_human_start -- CompArch_sars_seq start coordinate relatively ot the initial human β-arch
+  - CompArch_human_start -- list of CompArch_sars_seq start coordinates relatively ot the initial human β-arch
 
-  - CompScore -- CompScore from CompArches
+  - CompScore -- list of CompScores from CompArches
 
-  - OtherScores --- other scores from CompArches
+  - OtherScores --- list of other scores from CompArches
   
 ### Found known pathogenic amyloids 
   
