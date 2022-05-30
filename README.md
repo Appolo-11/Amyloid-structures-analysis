@@ -3,6 +3,11 @@ The set of programms for revealing possible SARS-CoV-2 proteins able to co-aggre
 In this project was used unpublished program AmyloComp. It allows to estimate probability of co-aggregation two proteins/β-arches.
 _Remark:_ all amyloids of our interests are pathogenic amyloids. But we would name them just as amyloid.
 
+This project is a result of semester work in the [Bioinformatics Institute](https://bioinf.me/en). 
+- Supervisor: Bondarev Stanislav
+- Student: Sevasteeva Evgeniia
+
+
 ## Aims and goals of project
 **Aims:** To assess the probability of developing human amyloidosis as a result of coaggregation with SARS-CoV-2 proteins. 
 To solve this problem, the AmyloComp program should be used, developed in SPbU laboratory together with the A.V. Kayava group (University of Montpellier, France)
