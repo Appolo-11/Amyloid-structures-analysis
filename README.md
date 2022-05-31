@@ -41,6 +41,10 @@ huntingtin (initiator of Huntington chorea) or proteins which amyloids initiate 
 
 We found recently published work [3], that experimetally approved several amyloid regions (20AA-peptides) of SARS-CoV-2 S-protein. We compare our foundations with these regions and observe nearly 500 human proteins, which were identified as possibly c0-aggregating with these regions. Among them were identified one known pathogenic amyloid - Corneodesmosin, which initiate some skin deseases.
 
+## Conclusions 
+
+As a result of work we got list of potentially candidates for pathogenic amyloids among human proteins, which could occure as a result of co-aggregating with SARS-CoV-2 proteins. We identified severl thousands of candidates, but now we plan to made extra analysis to make our data more precise by adding extra information (such as localsation of proteins in cell and estimate the probability of SARS-CoV-2 and human proteis "meeting". 
+
 
 ## References
 
