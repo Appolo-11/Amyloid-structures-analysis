@@ -68,7 +68,7 @@ def read_sars_csv(sars_path):
 # df should have ID column with proteins id's
 def write_unique_proteins(df):
 	with open('unique_proteins.txt', 'w') as f:
-    	f.writelines(df.ID.unique()+'\n')
+    		f.writelines(df.ID.unique()+'\n')
 
 
 def read_web_iupred(filepath):
