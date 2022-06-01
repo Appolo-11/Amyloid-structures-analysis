@@ -10,8 +10,8 @@ import functions.BArchClass as ba
 
 
 def concat_human_csv(path):
-""" These functions concat all .csv files contained in path directory
-"""
+    """ These functions concat all .csv files contained in path directory
+    """
     all_files = glob.glob(path + "/*.csv")
 
     # sort file names from _0 to _20000
@@ -44,25 +44,25 @@ def concat_human_csv(path):
     return clean_df
 
 def read_sars_csv(sars_path):
-""" These functions read .csv files defined with path
-"""
-	sars_df = pd.read_csv(sars_path, index_col=None, header=0, quotechar="'")
-	sars_df['ID'] = list(map(lambda x: x.split('|')[1], sars_df['ID']))
-	if sars_df.isnull().values.any():
-	    print(f'{filename[50:]} has missing values')
+  """ These functions read .csv files defined with path
+  """
+  sars_df = pd.read_csv(sars_path, index_col=None, header=0, quotechar="'")
+  sars_df['ID'] = list(map(lambda x: x.split('|')[1], sars_df['ID']))
+  if sars_df.isnull().values.any():
+      print(f'{filename[50:]} has missing values')
 
-	sars_df.columns = sars_df.columns.str.replace(r"[' ']", "_", regex=True)
+  sars_df.columns = sars_df.columns.str.replace(r"[' ']", "_", regex=True)
 
-	new_cols = ['ID', 'Sequence', 'Arch', 'Start', 'Score_Bstrand_length', 'Score_total',
-	            'CompArch_sars_seq', 'CompArch_sars_start', 'HumanID',
-	            'CompArch_human_seq', 'CompArch_human_start', 'CompScore', 'OtherScores']
+  new_cols = ['ID', 'Sequence', 'Arch', 'Start', 'Score_Bstrand_length', 'Score_total',
+              'CompArch_sars_seq', 'CompArch_sars_start', 'HumanID',
+              'CompArch_human_seq', 'CompArch_human_start', 'CompScore', 'OtherScores']
 
-	# delete extra columns
-	for col in sars_df.columns:
-	  if col not in new_cols:
-	    sars_df.drop(col, inplace=True, axis=1)
+  # delete extra columns
+  for col in sars_df.columns:
+    if col not in new_cols:
+      sars_df.drop(col, inplace=True, axis=1)
 
-	return sars_df
+  return sars_df
 
 
 # df should have ID column with proteins id's
@@ -72,19 +72,19 @@ def write_unique_proteins(df):
 
 
 def read_web_iupred(filepath):
-	""" This function read IUpred web-interface result *filepath* which contain info about proteins position
-		and their IUpred score and return information about unstructured regions.
-			Format of return is a dictionary with keys = protein-IDs and
-			values = dictionaries as like {start_1: stop_1, ... , start_n: stop_n}
-			start_i is an index of start i-th unstructured region, stop_i is the end of that region
-		Protein region considered as unctructured in case of:
-				- IUpred score of positions it contains are greater than 0.3
-				- IUpred score of positions it contains are less than 0.3
-						but total region length are less than 30 aminoacids (AA)
-				- protein length is less than 45 AA: in this case whole protein considered as unstructured
+    """ This function read IUpred web-interface result *filepath* which contain info about proteins position
+    	and their IUpred score and return information about unstructured regions.
+    		Format of return is a dictionary with keys = protein-IDs and
+    		values = dictionaries as like {start_1: stop_1, ... , start_n: stop_n}
+    		start_i is an index of start i-th unstructured region, stop_i is the end of that region
+    	Protein region considered as unctructured in case of:
+    			- IUpred score of positions it contains are greater than 0.3
+    			- IUpred score of positions it contains are less than 0.3
+    					but total region length are less than 30 aminoacids (AA)
+    			- protein length is less than 45 AA: in this case whole protein considered as unstructured
 
-	Important! At the end of the file please add extra string "# IU"
-	"""
+    Important! At the end of the file please add extra string "# IU"
+    """
     with open(filepath, 'r') as iupred:
         proteome_dict = {}
         read_unstructured_region = False
@@ -183,46 +183,46 @@ def read_web_iupred(filepath):
 
 
 def concat_iupred_res(path, path_to_out_file):
-""" These functions concat files from IUPred and made one file from them
-"""
-	all_files = glob.glob(path + "/*.result")
+  """ These functions concat files from IUPred and made one file from them
+  """
+  all_files = glob.glob(path + "/*.result")
 
-	# sort file names from _0 to _20000
-	all_files.sort(key=lambda x: int(x.split('/')[-1].split('.')[0][5:]))
-	with open(path_to_out_file, 'w') as outfile:
-	    for fname in all_files:
-		with open(fname) as infile:
-		    for line in infile:
-			outfile.write(line)
-	outfile.write('# IUPred')
+  # sort file names from _0 to _20000
+  all_files.sort(key=lambda x: int(x.split('/')[-1].split('.')[0][5:]))
+  with open(path_to_out_file, 'w') as outfile:
+      for fname in all_files:
+        with open(fname) as infile:
+          for line in infile:
+            outfile.write(line)
+  outfile.write('# IUPred')
 
 
 def make_iupred_df(human_df, full_proteome_dict):
-""" These functions add information about structured/unstructured region belonging 
-to the human_df according to the full_proteome_dict data, contained IUPred scores for each protein in human_df
-"""
-	df_proteins_list = []
-	for protein in tqdm(full_proteome_dict.keys()):
-	      df_protein = clean_df[clean_df.ID==protein]
-	      for ind in df_protein.index:
-	          start = df_protein.loc[ind].Start
-	          stop = df_protein.loc[ind].Stop
-	          is_unstructured = False
-	          for possible_start in sorted(full_proteome_dict[protein].keys()):
-	              possible_stop = full_proteome_dict[protein][possible_start]
-	              if start >= possible_start and start < possible_stop:
-	                  if stop <= possible_stop:
-	                      is_unstructured = True
-	                  break
-	              else:
-	                  continue
-	          df_protein.at[ind, 'IUpred'] = 1 if is_unstructured else 0
-	      df_proteins_list.append(df_protein)
+  """ These functions add information about structured/unstructured region belonging 
+  to the human_df according to the full_proteome_dict data, contained IUPred scores for each protein in human_df
+  """
+  df_proteins_list = []
+  for protein in tqdm(full_proteome_dict.keys()):
+        df_protein = clean_df[clean_df.ID==protein]
+        for ind in df_protein.index:
+            start = df_protein.loc[ind].Start
+            stop = df_protein.loc[ind].Stop
+            is_unstructured = False
+            for possible_start in sorted(full_proteome_dict[protein].keys()):
+                possible_stop = full_proteome_dict[protein][possible_start]
+                if start >= possible_start and start < possible_stop:
+                    if stop <= possible_stop:
+                        is_unstructured = True
+                    break
+                else:
+                    continue
+            df_protein.at[ind, 'IUpred'] = 1 if is_unstructured else 0
+        df_proteins_list.append(df_protein)
 
-	human_iupred_df = pd.concat(df_proteins_list, axis=0, ignore_index=True)
-	human_iupred_df.IUpred = human_iupred_df.IUpred.astype(np.int64)
+  human_iupred_df = pd.concat(df_proteins_list, axis=0, ignore_index=True)
+  human_iupred_df.IUpred = human_iupred_df.IUpred.astype(np.int64)
 
-	return human_iupred_df
+  return human_iupred_df
 
 
 def eval_compatible_arches(arc_score_path):
