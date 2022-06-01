@@ -17,7 +17,7 @@ def concat_human_csv(path):
     # sort file names from _0 to _20000
     all_files.sort(key=lambda x: int(x.split('_')[-1].split('.')[0]))
 
-    li = []
+    df_list = []
 
     for filename in all_files:
         df = pd.read_csv(filename, index_col=None, header=0, quotechar="'")
@@ -25,9 +25,9 @@ def concat_human_csv(path):
         if df.isnull().values.any():
           print(f'{filename[-15:]} has missing values')
         # df.Start = int(df.Start)
-        li.append(df)
+        df_list.append(df)
 
-    frame = pd.concat(li, axis=0, ignore_index=True)
+    frame = pd.concat(df_list, axis=0, ignore_index=True)
     clean_df = frame.dropna()
     clean_df.Start=clean_df.Start.astype(np.int64)
     clean_df.Stop=clean_df.Stop.astype(np.int64)
